@@ -11,16 +11,25 @@
         <!-- Marqueur pour le chat -->
         <a-marker preset="hiro">
             <!-- Modèle 3D du chat -->
-            <a-entity gltf-model="url(animaux/chat/Chat.glb)" scale="0.1 0.1 0.1"></a-entity>
+            <a-entity
+                gltf-model="url(animaux/chat/Chat.glb)"
+                scale="0.1 0.1 0.1"
+                position="0 0 0"
+                rotation="0 0 0"
+            ></a-entity>
             
             <!-- Texte d'information sur le chat -->
-            <a-text value="Chat" position="0 -0.5 0"></a-text>
+            <a-text
+                value="Chat"
+                position="0 -0.5 0"
+                align="center"
+                width="4"
+                color="#FFFFFF"
+            ></a-text>
             
             <!-- Ajoutez d'autres éléments ou comportements ici -->
         </a-marker>
 
-        <!-- Ajoutez d'autres marqueurs et contenus AR ici -->
-        
         <!-- Caméra pour la scène AR -->
         <a-entity camera></a-entity>
     </a-scene>
