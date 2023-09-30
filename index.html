@@ -2,91 +2,27 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Projet AR Puzzle avec Puzzle Physique</title>
+    <title>Projet AR Chat</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 </head>
 <body>
     <a-scene embedded arjs>
-        <!-- Marqueur pour le lion -->
-        <a-marker preset="lion">
-            <a-entity gltf-model="url(animaux/lion/Lion.glb)" scale="0.1 0.1 0.1"></a-entity>
-            <a-text value="Lion" position="0 -0.5 0"></a-text>
-            <a-entity class="info-bubble" visible="false">
-                <a-text value="Le lion est un grand félin carnivore." wrap-count="20"></a-text>
-            </a-entity>
+        <!-- Marqueur pour le chat -->
+        <a-marker preset="hiro">
+            <!-- Modèle 3D du chat -->
+            <a-entity gltf-model="url(animaux/chat/Chat.glb)" scale="0.1 0.1 0.1"></a-entity>
+            
+            <!-- Texte d'information sur le chat -->
+            <a-text value="Chat" position="0 -0.5 0"></a-text>
+            
+            <!-- Ajoutez d'autres éléments ou comportements ici -->
         </a-marker>
 
-        <!-- Marqueur pour l'éléphant -->
-        <a-marker preset="elephant">
-            <a-entity gltf-model="url(animaux/elephant/Elephant.glb)" scale="0.1 0.1 0.1"></a-entity>
-            <a-text value="Eléphant" position="0 -0.5 0"></a-text>
-            <a-entity class="info-bubble" visible="false">
-                <a-text value="L'éléphant est le plus grand mammifère terrestre." wrap-count="20"></a-text>
-            </a-entity>
-        </a-marker>
-
-        <!-- Marqueur pour la chat -->
-        <a-marker preset="chat1">
-            <!-- Élément HTML pour la vidéo YouTube -->
-         <iframe
-           width="560"
-           height="315"
-           src="https://youtu.be/0969plJjcHM?si=XD6aE0WSK_IDjKEl"
-           frameborder="0"
-           allowfullscreen
-         ></iframe>
-            <a-entity class="info-bubble" visible="false">
-                <a-text value="Le chat est un animal mignion." wrap-count="20"></a-text>
-            </a-entity>
-        </a-marker>
-
-        <!-- Ajoutez d'autres marqueurs pour d'autres animaux -->
-
-        <!-- Ajoutez d'autres lumières et une caméra -->
-
-        <!-- Définissez le comportement des info-bulles -->
-        <a-entity id="camera" camera look-controls></a-entity>
-        <a-entity id="infoBubbles">
-            <a-entity class="info-bubble"></a-entity>
-        </a-entity>
+        <!-- Ajoutez d'autres marqueurs et contenus AR ici -->
+        
+        <!-- Caméra pour la scène AR -->
+        <a-entity camera></a-entity>
     </a-scene>
-
-    <script>
-        const infoBubbles = document.querySelector('#infoBubbles');
-
-        // Afficher les info-bulles lorsqu'un marqueur est scanné
-        const markers = document.querySelectorAll('a-marker');
-        markers.forEach(marker => {
-            const animalName = marker.querySelector('a-text').getAttribute('value');
-            const infoBubble = marker.querySelector('.info-bubble');
-
-            marker.addEventListener('markerFound', () => {
-                infoBubbles.appendChild(infoBubble.cloneNode(true));
-            });
-
-            marker.addEventListener('markerLost', () => {
-                const existingInfoBubble = infoBubbles.querySelector('.info-bubble');
-                if (existingInfoBubble) {
-                    infoBubbles.removeChild(existingInfoBubble);
-                }
-            });
-
-            marker.addEventListener('click', () => {
-                const existingInfoBubble = infoBubbles.querySelector('.info-bubble');
-                if (existingInfoBubble) {
-                    existingInfoBubble.setAttribute('visible', 'true');
-                }
-            });
-
-            marker.addEventListener('click', () => {
-                const existingInfoBubble = infoBubbles.querySelector('.info-bubble');
-                if (existingInfoBubble) {
-                    existingInfoBubble.setAttribute('visible', 'false');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
-
