@@ -13,28 +13,19 @@
     <a-scene embedded arjs="detectionMode: mono_and_matrix; matrixCodeType: 3x3; patternRatio: 0.5;">
         <!-- Ajouter le marqueur -->
         <a-marker type="pattern" url="hiro.patt">
-            <!-- Ajouter une vidéo en tant qu'élément HTML -->
-            <video id="youtubeVideo" autoplay loop muted controls>
-                <source src="https://youtube.com/shorts/-SXFrAvchfw?si=baFixeOHJkyHweCt">
-            </video>
+            <!-- Ajouter une iframe pour la vidéo YouTube -->
+            <a-entity
+                geometry="primitive: plane; width: 16; height: 9"
+                material="shader: flat; src: #youtube-video"
+                scale="0.1 0.1 0.1"
+                position="0 0 -5"
+            ></a-entity>
         </a-marker>
         <!-- Caméra -->
         <a-entity camera></a-entity>
     </a-scene>
 
-    <!-- Script pour la gestion de la vidéo -->
-    <script>
-        // Lorsque le marqueur est chargé, démarrer la vidéo
-        document.querySelector('a-marker').addEventListener('markerFound', () => {
-            document.getElementById('youtubeVideo').play();
-        });
-        
-        // Lorsque le marqueur est perdu, arrêter la vidéo
-        document.querySelector('a-marker').addEventListener('markerLost', () => {
-            document.getElementById('youtubeVideo').pause();
-        });
-    </script>
+    <!-- Ajouter une iframe pour la vidéo YouTube (cachée) -->
+    <iframe id="youtube-video" width="560" height="315" src="https://youtube.com/shorts/-SXFrAvchfw?si=baFixeOHJkyHweCt" frameborder="0" allowfullscreen style="display: none;"></iframe>
 </body>
 </html>
-
-
