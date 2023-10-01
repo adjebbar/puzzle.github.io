@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR.js Example</title>
+    <title>AR.js Example with Video</title>
     <!-- Inclure AR.js -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.0.8/aframe/build/aframe-ar.js"></script>
@@ -13,13 +13,28 @@
     <a-scene embedded arjs="detectionMode: mono_and_matrix; matrixCodeType: 3x3; patternRatio: 0.5;">
         <!-- Ajouter le marqueur -->
         <a-marker type="pattern" url="hiro.patt">
-            <!-- Ajouter le modèle 3D -->
-         <!--   <a-entity gltf-model="url(animaux/chat/Ferrari.glb)" scale="0.1 0.1 0.1"></a-entity> -->
-        <a-video src="https://youtube.com/shorts/-SXFrAvchfw?si=baFixeOHJkyHweCt" width="16" height="9"></a-video>
+            <!-- Ajouter une vidéo en tant qu'élément HTML -->
+            <video id="youtubeVideo" autoplay loop muted controls>
+                <source src="https://youtube.com/shorts/-SXFrAvchfw?si=baFixeOHJkyHweCt">
+            </video>
         </a-marker>
         <!-- Caméra -->
         <a-entity camera></a-entity>
     </a-scene>
+
+    <!-- Script pour la gestion de la vidéo -->
+    <script>
+        // Lorsque le marqueur est chargé, démarrer la vidéo
+        document.querySelector('a-marker').addEventListener('markerFound', () => {
+            document.getElementById('youtubeVideo').play();
+        });
+        
+        // Lorsque le marqueur est perdu, arrêter la vidéo
+        document.querySelector('a-marker').addEventListener('markerLost', () => {
+            document.getElementById('youtubeVideo').pause();
+        });
+    </script>
 </body>
 </html>
+
 
